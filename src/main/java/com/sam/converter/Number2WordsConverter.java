@@ -24,53 +24,9 @@ public class Number2WordsConverter extends ConverterUtil {
 		return instance;
 	}
 
-// Method to convert single digit or two digit number into words
-	private String convertUpToTwoDigitNumber(int number, String suffix) 
-			throws Number2WordsException {
-
-		StringBuilder convertedwordBuilder = null;
-		try {
-			convertedwordBuilder = new StringBuilder();
-
-			if (number == 0) {
-				convertedwordBuilder.append(EMPTY_TOKEN);
-			} else if (number > 19
-					|| number < -19) {
-				convertedwordBuilder.append(TWENTY_TO_NINETY_TOKEN_ARRAY[number / 10]);
-				convertedwordBuilder.append(WHITESPACE_TOKEN);
-				convertedwordBuilder.append(ZERO_TO_NINTEEN_TOKEN_ARRAY[number % 10]);
-				convertedwordBuilder.append(WHITESPACE_TOKEN);
-				convertedwordBuilder.append(suffix);
-			} else {
-				convertedwordBuilder.append(ZERO_TO_NINTEEN_TOKEN_ARRAY[number]);
-				convertedwordBuilder.append(WHITESPACE_TOKEN);
-				convertedwordBuilder.append(suffix);
-			}
-			
-		} catch (Exception e) {
-			throw new Number2WordsException(101, e.getMessage(), e);
-		}
-
-		return convertedwordBuilder.toString();
-	}
-	
-	private String addAndClause(int number, String value) {
-		StringBuilder builder = new StringBuilder();
-		
-		if(value != null
-				&& value.length() > 0
-					&& number != 0) {
-			builder.append(AND_TOKEN);
-			builder.append(WHITESPACE_TOKEN);
-		} else {
-			builder.append(EMPTY_TOKEN);
-		}
-		
-		return builder.toString();
-	}
-
 // Method to convert a given number (max 9-digits) into words
-	public String convert(int number) 
+	@Override
+	protected String convert(int number) 
 			throws Number2WordsException {
 		
 		StringBuilder converBuilder = null;

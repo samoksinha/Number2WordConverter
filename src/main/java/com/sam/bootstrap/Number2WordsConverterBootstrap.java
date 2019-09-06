@@ -11,13 +11,11 @@ public class Number2WordsConverterBootstrap {
 	public static void main(String[] args) {
 
 		Number2WordsConverter number2WordsConverter = null;
-		BufferedReader bufferedReader =  null;
 		String value = null;
 		String convertedValue = null;
-		try {
+		try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
 			number2WordsConverter = Number2WordsConverter.getInstance();
 			
-			bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 			System.out.println("Please enter the number to convert in words : ");
 			value = bufferedReader.readLine();
 			
